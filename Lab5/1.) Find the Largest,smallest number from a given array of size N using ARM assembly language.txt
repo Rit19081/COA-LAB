@@ -1,0 +1,21 @@
+1.) Find the Largest,smallest number from a given array of size N using ARM assembly language.
+.global _start
+_start:
+	@Largest number from a given array
+	ldr r0,=count	//r0 <- count
+	ldr r1,[r0]		//r1 <- [r0]
+	mov r4,#0x00	//r4 <-0x00
+	ldr r2,=array	//r2 <- array
+back: 
+	ldr r3, [r2],#4	//r3 <-[r2]
+	cmp r4,r3		//compare r4 with r3
+ 	bgt fwd			//Branch to fwd if r4 > r3  //blt for smallest
+	mov r4,r3		//r4 <- r3 if r3 is greater
+fwd: 
+	subs r1,r1,#01	//subtract 1 from r1
+	bne back		//if r1 !=0 branch to back
+	str r4,[r2]		//r4 <- [r2] <= store the largest element
+exit: b exit
+.data
+count: .word 0x05	//array size
+array: .word 0x15, 0x35, 0x45, 0x10,0x4f //array elements
