@@ -1,0 +1,66 @@
+2. Arrange the elements (8-bit number) of a given array of size N in ascending/descending order.
+
+; Lab 3 Objective 2 (Ascending)
+.DATA
+count DB 06         ; count (Data type: Define Byte) <- 06 (array size)
+value DB 09H,0FH,14H,45H,24H,3FH  ; value(Data type: Define Byte) <- 09H, 0FH, 14H, 45H, 24H, 3FH.
+
+.CODE
+MAIN PROC     
+       MOV AX,DATA    ; AX <- DATA
+       MOV DS,AX      ; DS <- AX
+       MOV CH, count  ; CH <- Count
+       DEC CH         ; Decrement CH
+UP2:   
+       MOV CL,CH      ; CL <- CH
+       LEA SI, value  ; Load effective address SI <- Value
+
+UP1:   
+       MOV AL,[SI]    ; AL <- [SI]
+       CMP AL,[SI+1]  ; Compare the value in AL and [SI+1]
+       JC DOWN        ; Jump to "DOWN" if the carry flag is set 
+       MOV DL,[SI+1]  ; DL <- [SI+1]
+       XCHG [SI],DL   ; Exchange the values of AL and DL.
+       MOV [SI+1],DL  ; [SI+1] <- DL
+
+DOWN:  
+       INC SI         ; Increment SI
+       DEC CL         ; Decrement CL
+       JNZ UP1        ; Jump to "UP1" if the zero flag is not set
+       DEC CH         ; Decrement CH
+       JNZ UP2        ; Jump to "UP2" if the zero flag is not set
+
+END MAIN              ; End of the main procedure.
+
+
+
+.DATA
+count DB 06         ; count (Data type: Define Byte) <- 06 (array size)
+value DB 09H,0FH,14H,45H,24H,3FH  ; value(Data type: Define Byte) <- 09H, 0FH, 14H, 45H, 24H, 3FH.
+
+.CODE
+MAIN PROC     
+       MOV AX,DATA    ; AX <- DATA
+       MOV DS,AX      ; DS <- AX
+       MOV CH, count  ; CH <- Count
+       DEC CH         ; Decrement CH
+UP2:   
+       MOV CL,CH      ; CL <- CH
+       LEA SI, value  ; Load effective address SI <- Value
+
+UP1:   
+       MOV AL,[SI]    ; AL <- [SI]
+       CMP AL,[SI+1]  ; Compare the value in AL and [SI+1]
+       JNC DOWN        ; Jump to "DOWN" if the carry flag is not set 
+       MOV DL,[SI+1]  ; DL <- [SI+1]
+       XCHG [SI],DL   ; Exchange the values of AL and DL.
+       MOV [SI+1],DL  ; [SI+1] <- DL
+
+DOWN:  
+       INC SI         ; Increment SI
+       DEC CL         ; Decrement CL
+       JNZ UP1        ; Jump to "UP1" if the zero flag is not set
+       DEC CH         ; Decrement CH
+       JNZ UP2        ; Jump to "UP2" if the zero flag is not set
+
+END MAIN              ; End of the main procedure.
