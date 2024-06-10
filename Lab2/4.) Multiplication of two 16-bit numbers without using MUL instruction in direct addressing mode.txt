@@ -1,0 +1,15 @@
+4.) Multiplication of two 16-bit numbers without using MUL instruction in direct addressing mode.
+mov bx,[1000h]      ; bx <- [1000h]
+mov cx,[1002h]      ; cx <- [1002h]
+mov dx,0000h        ; dx <- 0000h
+mov ax,0000h        ; ax <- 0000h
+L2:                 ; Start of loop L2
+    add ax,bx       ; Add the value in BX to AX
+    jnc L1          ; Jump to L1 if no carry flag (CF=0) after the addition
+    inc dx          ; Increment the DX register (counting carry occurrences)
+L1:                 ; Start of loop L1
+    dec cx          ; Decrement the CX register
+    jnz L2          ; Jump back to L2 if CX is not zero
+    mov [1004h],ax  ; [1004h] <- ax
+    mov [1006h],dx  ; [1006h] <- ax
+hlt
