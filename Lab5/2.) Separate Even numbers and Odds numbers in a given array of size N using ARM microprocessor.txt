@@ -1,0 +1,25 @@
+2.) Separate Even numbers and Odds numbers in a given array of size N using ARM microprocessor.
+.global _start
+_start:
+	ldr r0, =count	// r0 <- address of count
+	ldr r1, [r0]	// r1 <- [r0] (r1 <- count value)
+	ldr r3, =array  // r3 <- address of array (array[0])
+	ldr r4, =even   // r4 <- address of even (even[0])
+	ldr r5, =odd    // r5 <- address of odd (odd[0])
+back: 
+	ldr r6, [r3], #4	// r6 <- [r3], r3 <- r3 + 4
+	ands r7, r6, #1     // r7 <- r6 AND 0x01
+	beq fwd             // If r7 == 0 (even), branch to fwd
+	str r6, [r5], #4    // [r5] <- r6, r5 <- r5 + 4
+	b fwd1              // Unconditionally branch to fwd1
+fwd: 
+	str r6, [r4], #4    // [r4] <- r6, r4 <- r4 + 4
+fwd1: 
+	subs r1, r1, #01   // r1 <- r1 - 1
+	bne back           // If r1 != 0, branch to back
+	exit: b exit           
+.data
+count: .word 0x07
+array: .word 0x15, 0x35,0x32, 0x45, 0x10,0x4f,0x34,
+even: .word 0, 0, 0, 0, 0
+odd: .word 0, 0, 0, 0, 0
