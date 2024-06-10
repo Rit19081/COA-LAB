@@ -1,0 +1,21 @@
+2.) Perform the following operations on two 8-bit data (data1, data2) given in memory locations and store the result in another memory location using indirect addressing mode.
+Swapping of nibble of data1
+Y= (data1 and data2) or (data1 xor data2)
+
+mov si, 5000h  ; si <- [5000h]
+mov al, [si]   ; al <- [si]
+mov cl, al     ; cl <- al
+shr al,4       ; al <- Right shift by 4 bits
+shl cl,4       ; cl <- Left shift by 4 bits
+or al,cl       ; al <- al or cl 
+inc si         ; Increment +1 si
+mov [si],al    ; [si] <- al 
+
+inc si         ; Increment +1 si
+mov bl,[si]    ; bl <- [si]
+mov cl,al      ; cl <- al
+and al,bl      ; al <- al and bl
+xor cl,bl      ; cl <- cl and bl
+or al,cl       ; al <- al or cl 
+inc si         ; Increment +1 si
+mov [si],bl    ; [si] <- bl
