@@ -1,0 +1,16 @@
+3.) Move a block of 16-bit data from one location to other.
+mov ax,2000h           ; ax <- 2000h
+mov ds,ax              ; ds <- ax
+mov si,3000h           ; si <- 3000h
+mov di, 5000h          ; di <- 5000h
+mov cl,04h             ; cl <- 04h
+l1:                    ; Start of loop L1
+    mov bx,[si]        ; bx <- [si]
+    mov [di],bx        ; [di] <- bx
+    inc si
+    inc si             ; Increment SI by 2 
+    inc di
+    inc di             ; Increment DI by 2 
+    dec cl             ; Decrement CL
+    jnz l1             ; Jump back to L1 if CL is not zero
+hlt        
