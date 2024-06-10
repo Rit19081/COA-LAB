@@ -1,0 +1,29 @@
+1.) Find the sum and average of N 16-bit numbers.
+mov si,2000h        ; si <- 2000h
+mov cl,[si]         ; cl <- [si]
+mov ch,00h          ; ch <- 00h
+mov bx,cx           ; bx <- cx
+mov ax,0000h        ; ax <- 0000h
+L2:                 ; Start of loop L2
+    inc si          
+    inc si          ; Increment SI by 2
+    add ax,[si]     ; ax <- addition of ax and [si]
+    jnc L1          ; Jump to L1 if no carry
+    inc ch          ; Increment CH if carry occurred
+L1:                 ; 
+    dec cl          ; Decrement CL 
+    jnz L2          ; Jump back to L2 if CL is not zero
+    inc si
+    inc si          ; Increment SI by 2
+    mov [si],ax     ; [si] <- ax
+    inc si          
+    inc si          ; Increment SI by 2
+    mov [si],ch     ; [si] <- ax
+    div bx          ; ax <- division of ax and bx
+    inc si
+    inc si          ; Increment SI by 2
+    mov [si],ax     ; [si] <- ax
+    inc si
+    inc si          ; Increment SI by 2
+    mov [si],dx     ; [si] <- dx
+hlt
