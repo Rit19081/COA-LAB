@@ -1,0 +1,54 @@
+ 1.) Find the largest/smallest number (8-bit number) from a given array of size N.
+
+; Lab 3 Objective 1 (Largest)
+.data  
+    count db 04h     ; count(Data type: Define Byte) <- 04h (array size)
+    value db 09h, 10h, 05h, 11h  ; value (Data type: Define Byte) <- 09h, 10h, 05h, 11h 
+    res db 0          ; res <- 0 (store the result in res)
+
+.code
+MAIN PROC
+    mov ax, data      ; ax <- data
+    mov ds, ax        ; ds <- ax
+    mov cl, count     ; cl <- count
+    dec cl            ; Decrement CL
+    LEA SI, value     ; Load effective address SI <- Value
+    mov al, [SI]      ; al <- [SI]
+up:                  
+    inc si            ; Increment SI
+    cmp al, [si]      ; Compare the value in al and [SI]
+    jnl nxt           ; Jump to "nxt" if not less (jnl) or equal (jne) flag
+    mov al, [si]      ; al <- [si]
+nxt:                
+    dec cl            ; Decrement cl
+    jnz up            ; Jump to "up" if the zero flag is not set
+    LEA DI, res       ; Load effective address DI <- res
+    mov [DI], al      ; [DI] <- al
+    END MAIN          ; End of the main procedure
+
+; Lab 3 Objective 1 (Smallest)
+
+.data  
+    count db 04h     ; count(Data type: Define Byte) <- 04h (array size)
+    value db 09h, 10h, 05h, 11h  ; value (Data type: Define Byte) <- 09h, 10h, 05h, 11h 
+    res db 0          ; res <- 0 (store the result in res)
+
+.code
+MAIN PROC
+    mov ax, data      ; ax <- data
+    mov ds, ax        ; ds <- ax
+    mov cl, count     ; cl <- count
+    dec cl            ; Decrement CL
+    LEA SI, value     ; Load effective address SI <- Value
+    mov al, [SI]      ; al <- [SI]
+up:                  
+    inc si            ; Increment SI
+    cmp al, [si]      ; Compare the value in al and [SI]
+    jl nxt            ; Jump to "nxt" if less (jl) or equal (jne) flag
+    mov al, [si]      ; al <- [si]
+nxt:                
+    dec cl            ; Decrement cl
+    jnz up            ; Jump to "up" if the zero flag is not set
+    LEA DI, res       ; Load effective address DI <- res
+    mov [DI], al      ; [DI] <- al
+    END MAIN          ; End of the main procedure
