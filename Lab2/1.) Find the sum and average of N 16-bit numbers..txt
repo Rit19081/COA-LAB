@@ -1,0 +1,15 @@
+1.) Find the sum and average of N 16-bit numbers.
+MOV SI , 2000H     ; SI <- 2000H
+MOV AL , [SI]      ; AL <- [SI]
+MOV CL , 08H       ; CL <- 08H
+MOV CH , 00H       ; CH <- 00H
+L2:                ; Start of loop L2
+    SHR AL , 01H   ; al <- Right shift 1 time
+    JC L1          ; Jump to L1 if the carry flag (CF) is set after the shift
+    INC CH          ; Increment CH if no carry occurred
+L1:                ; Start of loop L1
+    DEC CL         ; Decrement CL 
+    JNZ L2         ; Jump back to L2 if CH is not zero
+    INC SI         ; Increment SI
+    MOV [SI], CH   ; [SI] <- CH
+HLT
