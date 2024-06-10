@@ -10,7 +10,6 @@ shl cl,4       ; cl <- Left shift by 4 bits
 or al,cl       ; al <- al or cl 
 inc si         ; Increment +1 si
 mov [si],al    ; [si] <- al 
-
 inc si         ; Increment +1 si
 mov bl,[si]    ; bl <- [si]
 mov cl,al      ; cl <- al
