@@ -1,4 +1,5 @@
-1.) Find the sum and average of N 16-bit numbers.
+2.) Count no. of 0’s in an 8-bit number.
+
 MOV SI , 2000H     ; SI <- 2000H
 MOV AL , [SI]      ; AL <- [SI]
 MOV CL , 08H       ; CL <- 08H
