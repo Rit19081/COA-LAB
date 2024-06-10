@@ -1,0 +1,12 @@
+3.) Find the Gray code of an 8-bit binary number.
+
+; Name: Rit Harichandan 
+; Redg No: 2241008005
+; Section: 2241023  
+; Lab 1 Obj 3
+mov al,06h       ; al <- 06h
+mov bl,al        ; bl <- al
+shr al,01h       ; al <- Right shift 1 time
+xor al,bl        ; al <- al xor bl
+mov [5000h],al   ; [5000h] <- al
+hlt
