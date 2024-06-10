@@ -1,0 +1,6 @@
+4.) Find the 2’s complement of an 8-bit number.
+mov al, 89h     ; al <- 89h
+not al          ; al <- 1's complement of al
+add al, 01h     ; al <- addition of al and 01h
+mov [5000h],al  ; [5000h] <- al
+hlt
