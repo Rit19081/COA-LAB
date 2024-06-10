@@ -1,8 +1,5 @@
 1.) Perform Addition, Subtraction, Multiplication, and Division of two 16-bit numbers using immediate addressing mode and store the results using direct addressing mode.
-;Name: Rit Harichandan
-;Regd No: 2241008005
-;Section: 2241023
-;Lab 1 - Obj 1
+
 MOV AX, 0016h ; ax <- 0016h
 MOV BX, 0008h ; bx <- 0008h
 ADD AX, BX ; ax <- addition of ax and bx
